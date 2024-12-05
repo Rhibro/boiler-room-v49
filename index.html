@@ -5,20 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rhiannon's Repos</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ropa+Sans:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Ropa+Sans:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>Rhiannon's GitHub Repositories</h1>
+        <h1>RHIANNON's GitHub Repositories</h1>
     </header>
     <div class="wrapper">
         <div id="sideBar" class="sideBar"></div>
-        <main class="mainSection">
-            <input type="text" id="title" placeholder="Search by repo title...">
-            <button id="fetchbtn">Fetch Repositories</button>
-            <h2>Repositories:</h2>
-            <ul id="repoList"></ul>
-        </main>
+            <section class="cardDisplay">
+                <section id="repoSection" class="repoSection card">
+                    <div class="repoTitle">
+                        <h2>Repositories</h2>
+                    </div>
+                    <ul id="repoDisplay" class="repoDisplay"></ul>
+                </section>
+                <section id="detailSection" class="detailSection card">
+                    <div class="detailTitle">
+                        <h2>Details</h2>
+                    </div>
+                    <div id="repoDetail" class="repoDetail"></div>
+                </section>
+            </section>
+            <footer>
+                <p>made by: rhiannon brönnimann 2024</p>
+            </footer>
     </div>
 <script src="index.js"></script>
 </body>
 </html>
+

@@ -1,36 +1,64 @@
-// define an interface for the repo data
 interface Repo {
     name: string;
-    url: string;
+    // html_url: string;
     description: string;
     private: boolean;
     id: number;
 }
 
-document.getElementById('fetchbtn')!.addEventListener('click', function() {
-    const title: string = (document.getElementById('title') as HTMLInputElement).value.toLocaleLowerCase();
-    const url: string = `https://api.github.com/users/rhibro/repos`;
+document.addEventListener('DOMContentLoaded', () => {
+    const repoDisplay = document.getElementById('repoDisplay') as HTMLUListElement | null;
+    const repoDetail = document.getElementById('repoDetail') as HTMLDivElement | null;
 
-    fetch(url)
+    if (!repoDisplay || !repoDetail) {
+        console.error('Required elements are missing in the HTML.');
+        return;
+    }
+
+    fetch('https://api.github.com/users/rhibro/repos')
         .then(response => {
             if (!response.ok) {
-                throw new Error(`There are no repositories by the name of ${title}... :( `);
+                throw new Error('Could not load repositories... :(');
             }
-            return response.json() as Promise<Repo>;
+            return response.json() as Promise<Repo[]>;
         })
         .then(data => {
-            const repoList = document.getElementById('repoList') as HTMLUListElement;
-            repoList.innerHTML = '';
+            console.log(data);
+            repoDisplay.innerHTML = '';
 
-            const listItem = document.createElement('li');
-            listItem.textContent = data.name 
-            repoList.appendChild(listItem);
-            console.log(data.name);
-            console.log(data.id);
-            console.log(data.description);
+            data.forEach(repo => {
+                const repoItem = document.createElement('li');
+                repoItem.classList.add('repo-item');
+                repoItem.textContent = repo.name;
+
+                repoItem.addEventListener('click', () => {
+                    repoDetail.innerHTML = '<p>Loading...</p>';
+
+                    fetch('https://api.github.com/users/rhibro/repos')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Could not load repository details.');
+                            }
+                            return response.json() as Promise<Repo>;
+                        })
+                        .then(repoData => {
+                            const details = `
+                                <h3>${repoData.name}</h3>
+                                <p>Description: ${repoData.description}</p>
+                                <p>Private: ${repoData.private}</p>
+                                <p>ID: ${repoData.id}</p>
+                            `;
+                            repoDetail.innerHTML = details;
+                        })
+                        .catch(error => {
+                            repoDetail.innerHTML = `<p>${error.message}</p>`;
+                        });
+                });
+
+                repoDisplay.appendChild(repoItem);
+            });
         })
         .catch(error => {
-            const repoList = document.getElementById('repoList') as HTMLUListElement;
-            repoList.innerHTML = `<li>${error.message}</li>`;
+            repoDisplay.innerHTML = `<li>${error.message}</li>`;
         });
 });

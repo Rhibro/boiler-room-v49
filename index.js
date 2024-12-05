@@ -1,25 +1,45 @@
-document.getElementById('fetchbtn').addEventListener('click', function () {
-    var title = document.getElementById('title').value.toLocaleLowerCase();
-    var url = "https://api.github.com/repos/Rhibro/".concat(title);
-    fetch(url)
+document.addEventListener('DOMContentLoaded', function () {
+    var repoDisplay = document.getElementById('repoDisplay');
+    var repoDetail = document.getElementById('repoDetail');
+    if (!repoDisplay || !repoDetail) {
+        console.error('Required elements are missing in the HTML.');
+        return;
+    }
+    fetch('https://api.github.com/users/rhibro/repos')
         .then(function (response) {
         if (!response.ok) {
-            throw new Error("There are no repositories by the name of ".concat(title, "... :( "));
+            throw new Error('Could not load repositories... :(');
         }
         return response.json();
     })
         .then(function (data) {
-        var repoList = document.getElementById('repoList');
-        repoList.innerHTML = '';
-        var listItem = document.createElement('li');
-        listItem.textContent = data.name;
-        repoList.appendChild(listItem);
-        console.log(data.name);
-        console.log(data.id);
-        console.log(data.description);
+        console.log(data);
+        repoDisplay.innerHTML = '';
+        data.forEach(function (repo) {
+            var repoItem = document.createElement('li');
+            repoItem.classList.add('repo-item');
+            repoItem.textContent = repo.name;
+            repoItem.addEventListener('click', function () {
+                repoDetail.innerHTML = '<p>Loading...</p>';
+                fetch('https://api.github.com/users/rhibro/repos')
+                    .then(function (response) {
+                    if (!response.ok) {
+                        throw new Error('Could not load repository details.');
+                    }
+                    return response.json();
+                })
+                    .then(function (repoData) {
+                    var details = "\n                                <h3>".concat(repoData.name, "</h3>\n                                <p>Description: ").concat(repoData.description, "</p>\n                                <p>Private: ").concat(repoData.private, "</p>\n                                <p>ID: ").concat(repoData.id, "</p>\n                            ");
+                    repoDetail.innerHTML = details;
+                })
+                    .catch(function (error) {
+                    repoDetail.innerHTML = "<p>".concat(error.message, "</p>");
+                });
+            });
+            repoDisplay.appendChild(repoItem);
+        });
     })
         .catch(function (error) {
-        var repoList = document.getElementById('repoList');
-        repoList.innerHTML = "<li>".concat(error.message, "</li>");
+        repoDisplay.innerHTML = "<li>".concat(error.message, "</li>");
     });
 });
