@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    min-height: 7rem;
+    background-color: rgb(94, 66, 119);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+h1 {
+    padding-left: 2rem;
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sideBar {
+    background-image: url(/images/small-smith.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 18%;
+    background-color: black;
+    height: 100vh;
+}
+
+.mainSection {
+    padding: 2rem;
+}
