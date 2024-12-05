@@ -15,6 +15,8 @@ document.getElementById('fetchbtn').addEventListener('click', function () {
         listItem.textContent = data.name;
         repoList.appendChild(listItem);
         console.log(data.name);
+        console.log(data.id);
+        console.log(data.description);
     })
         .catch(function (error) {
         var repoList = document.getElementById('repoList');

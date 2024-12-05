@@ -9,7 +9,7 @@ interface Repo {
 
 document.getElementById('fetchbtn')!.addEventListener('click', function() {
     const title: string = (document.getElementById('title') as HTMLInputElement).value.toLocaleLowerCase();
-    const url: string = `https://api.github.com/repos/Rhibro/${title}`;
+    const url: string = `https://api.github.com/users/rhibro/repos`;
 
     fetch(url)
         .then(response => {
@@ -23,9 +23,11 @@ document.getElementById('fetchbtn')!.addEventListener('click', function() {
             repoList.innerHTML = '';
 
             const listItem = document.createElement('li');
-            listItem.textContent = data.name; 
+            listItem.textContent = data.name 
             repoList.appendChild(listItem);
             console.log(data.name);
+            console.log(data.id);
+            console.log(data.description);
         })
         .catch(error => {
             const repoList = document.getElementById('repoList') as HTMLUListElement;
