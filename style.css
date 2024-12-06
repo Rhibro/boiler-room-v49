@@ -38,7 +38,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     min-width: 100vw;
-}
+} 
 
 .sideBar {
     background-image: url(/images/small-smith.jpg);
@@ -47,7 +47,7 @@ h1 {
     background-position: center;
     width: 10%;
     background-color: #F8F8F8;
-    height: 100vh;
+    /* height: 100vh; */
     position: -webkit-sticky;
     position: sticky;
     overflow: auto;
@@ -75,6 +75,7 @@ h1 {
     width: 350px;
     margin-top: 2rem;
     margin-bottom: 3rem;
+    margin-right: 1rem;
     border: none;
 }
 
@@ -184,6 +185,7 @@ p {
 a {
     text-decoration: underline;
     color: black;
+    overflow-wrap: break-word;
 }
 
 /* footer styles */
