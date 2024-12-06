@@ -1,6 +1,5 @@
 interface Repo {
     name: string;
-    // html_url: string;
     description: string;
     private: boolean;
     id: number;
@@ -31,34 +30,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 repoItem.classList.add('repo-item');
                 repoItem.textContent = repo.name;
 
-                repoItem.addEventListener('click', () => {
-                    repoDetail.innerHTML = '<p>Loading...</p>';
+                    repoItem.addEventListener('click', () => {
 
-                    fetch('https://api.github.com/users/rhibro/repos')
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Could not load repository details.');
-                            }
-                            return response.json() as Promise<Repo>;
-                        })
-                        .then(repoData => {
                             const details = `
-                                <h3>${repoData.name}</h3>
-                                <p>Description: ${repoData.description}</p>
-                                <p>Private: ${repoData.private}</p>
-                                <p>ID: ${repoData.id}</p>
+                                <h3>${repo.name}</h3>
+                                <p>Description: <span>${repo.description || 'No description available'}</span></p>
+                                <p>Private: ${repo.private}</p>
+                                <p>ID: ${repo.id}</p>
                             `;
                             repoDetail.innerHTML = details;
-                        })
-                        .catch(error => {
-                            repoDetail.innerHTML = `<p>${error.message}</p>`;
                         });
+                        repoDisplay.appendChild(repoItem);
+                    });
                 });
+                      
+                // .catch(error => {
+                //     repoDetail.innerHTML = `<p>${error.message}</p>`;
+                // });
 
-                repoDisplay.appendChild(repoItem);
             });
-        })
-        .catch(error => {
-            repoDisplay.innerHTML = `<li>${error.message}</li>`;
-        });
-});

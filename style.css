@@ -1,3 +1,5 @@
+/* universal styles */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,9 +8,11 @@
 
 body {
     background: rgb(248,248,248);
-    background: linear-gradient(90deg, rgba(248,248,248,1) 21%, rgba(93,13,143,1) 76%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(90deg, rgba(248,248,248,1) 21%, rgba(93,13,143,1) 93%, rgba(60,2,87,1) 100%);
     overflow-x: hidden;
 }
+
+/* header styles */
 
 header {
     width: 100%;
@@ -21,13 +25,14 @@ header {
 h1 {
     padding-left: 2rem;
     font-family: 'Ropa Sans', sans-serif;
-    /* font-size: 50px; */
-    font-size: clamp(1rem, 0.3043rem + 3.4783vw, 3rem);
+    font-size: clamp(2rem, 0.3043rem + 3.4783vw, 3rem);
 }
 
 .spanHOne {
-    font-size: clamp(1rem, 0.4783rem + 2.6087vw, 2.5rem);
+    font-size: clamp(1.5rem, 0.4783rem + 2.6087vw, 2.5rem);
 }
+
+/* main styles */
 
 .wrapper {
     display: flex;
@@ -49,31 +54,27 @@ h1 {
     top: 10px;
 }
 
+/* card styles */
+
 .cardDisplay {
     display: flex;
     align-items: flex-start;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    /* background: rgb(248,248,248);
-    background: linear-gradient(90deg, rgba(248,248,248,1) 18%, rgba(93,13,143,1) 64%, rgba(0,0,0,1) 100%); */
     width: 90%;
 }
 
 .repoSection {
-    height: 500px;
-    min-width: 20rem;
-    gap: 0px;
+    /* height: 7rem; */
     margin-bottom: 3rem;
     margin-top: 2rem;
 }
 
 .detailSection {
     min-height: 500px;
-    min-width: 25rem;
-    gap: 0px;
+    width: 350px;
     margin-top: 2rem;
     margin-bottom: 3rem;
-    /* background-color: white; */
     border: none;
 }
 
@@ -101,9 +102,11 @@ h1 {
 
 .repoDisplay {
     overflow-x: hidden;
-    overflow-y: auto;
-    height: 500px;
+    /* overflow-y: auto; */
+    height: 350px;
 }
+
+/* repo list styles */
 
 li {
     list-style-type: none;
@@ -151,6 +154,7 @@ li:nth-child(odd):hover {
     border: 1px solid black; 
   }
 
+/* detail styles */
 
 h3 {
     font-family: 'Ropa Sans', sans-serif;
@@ -166,10 +170,10 @@ h3 {
 
 p {
     font-family: 'Ropa Sans', sans-serif;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
-    line-height: 21.09px;
-    letter-spacing: 0.2em;
+    line-height: 30px;
+    letter-spacing: 0.1em;
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
@@ -177,10 +181,56 @@ p {
     padding: .2rem;
 }
 
+/* footer styles */
+
 footer {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 50px;
+}
+
+/* media queries */
+
+@media screen and (max-width: 930px) {
+    .sideBar {
+        display: none;
+    }
+    .cardDisplay {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .repoSection {
+        max-width: 200px;   
+    }
+    li {
+        font-size: 20px;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .detailSection {
+        width:250px ;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .cardDisplay {
+        flex-direction: column;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .repoSection {
+        max-width: 300px; 
+        margin-bottom: 1rem;  
+    }
+    .footerText {
+        font-size: 14px;
+    }
+    
 }
