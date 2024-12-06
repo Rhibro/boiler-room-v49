@@ -181,6 +181,11 @@ p {
     padding: .2rem;
 }
 
+a {
+    text-decoration: underline;
+    color: black;
+}
+
 /* footer styles */
 
 footer {

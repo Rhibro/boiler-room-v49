@@ -20,16 +20,14 @@ document.addEventListener('DOMContentLoaded', function () {
             repoItem.classList.add('repo-item');
             repoItem.textContent = repo.name;
             repoItem.addEventListener('click', function () {
-                var details = "\n                                <h3>".concat(repo.name, "</h3>\n                                <p>Description: <span>").concat(repo.description || 'No description available', "</span></p>\n                                <p>Private: ").concat(repo.private, "</p>\n                                <p>ID: ").concat(repo.id, "</p>\n                            ");
+                var details = "\n                                <h3>".concat(repo.name, "</h3>\n                                <p>Description: <span>").concat(repo.description || 'No description available', "</span></p>\n                                <p>URL: <a href=\"").concat(repo.html_url, "\" target=\"_blank\">").concat(repo.html_url, "</a></p>\n                                <p>ID: ").concat(repo.id, "</p>\n                            ");
+                console.log('Repository Details:', repo);
                 repoDetail.innerHTML = details;
             });
             repoDisplay.appendChild(repoItem);
         });
     });
-    try { }
-    catch (error) { }
-    {
-        repoDetail.innerHTML = "<p>".concat(error.message, "</p>");
-    }
+    // .catch(error => {
+    //     repoDetail.innerHTML = `<p>${error.message}</p>`;
+    // });
 });
-;

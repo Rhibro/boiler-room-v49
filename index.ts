@@ -1,7 +1,7 @@
 interface Repo {
     name: string;
     description: string;
-    private: boolean;
+    html_url: string;
     id: number;
 }
 
@@ -35,9 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             const details = `
                                 <h3>${repo.name}</h3>
                                 <p>Description: <span>${repo.description || 'No description available'}</span></p>
-                                <p>Private: ${repo.private}</p>
+                                <p>URL: <a href="${repo.html_url}" target="_blank">${repo.html_url}</a></p>
                                 <p>ID: ${repo.id}</p>
                             `;
+                            console.log('Repository Details:', repo);
                             repoDetail.innerHTML = details;
                         });
                         repoDisplay.appendChild(repoItem);
