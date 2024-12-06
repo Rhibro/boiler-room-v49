@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
     // declaring variables with explicit types
     const repoDisplay = document.getElementById('repoDisplay');
     const repoDetail = document.getElementById('repoDetail');
+    // first tried to use just fetch but you cannot use catch without try
     try {
         const response = yield fetch('https://api.github.com/users/rhibro/repos');
         if (!repoDisplay || !repoDetail) {

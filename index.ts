@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const repoDisplay = document.getElementById('repoDisplay') as HTMLUListElement | null;
     const repoDetail = document.getElementById('repoDetail') as HTMLDivElement | null;
 
+    // first tried to use just fetch but you cannot use catch without try
    try {
     const response = await fetch('https://api.github.com/users/rhibro/repos');
     if (!repoDisplay || !repoDetail) {
