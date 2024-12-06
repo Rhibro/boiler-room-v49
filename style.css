@@ -30,6 +30,7 @@ h1 {
 
 .spanHOne {
     font-size: clamp(1.5rem, 0.4783rem + 2.6087vw, 2.5rem);
+    text-decoration: underline;
 }
 
 /* main styles */
