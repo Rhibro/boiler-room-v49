@@ -1,4 +1,5 @@
 // define an interface for repo data
+// ensures TypeScript knows what kind of data to expect
 interface Repo {
     name: string;
     description: string;
@@ -6,14 +7,15 @@ interface Repo {
     html_url: string;
 }
 
-// add event listeners to html elements 
+// this event is triggered when the HTML document is fully loaded & parsed
+// ensuring the script doesn't manipulate elements that don't exist yet
 document.addEventListener('DOMContentLoaded', async () => {
 
     // declaring variables with explicit types
     const repoDisplay = document.getElementById('repoDisplay') as HTMLUListElement | null;
     const repoDetail = document.getElementById('repoDetail') as HTMLDivElement | null;
 
-    // first tried to use just fetch but you cannot use catch without try
+    // This function makes an HTTP request to the GitHub API to get repositories for user rhibro
    try {
     const response = await fetch('https://api.github.com/users/rhibro/repos');
     if (!repoDisplay || !repoDetail) {
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
+    // 
     const data: Repo[] = await response.json();
 
             repoDisplay.innerHTML = '';
